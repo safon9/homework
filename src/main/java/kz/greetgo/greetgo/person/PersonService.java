@@ -27,6 +27,10 @@ public class PersonService {
         return repo.findById(id).orElseThrow();
     }
 
+    public List<PersonData> findAll() {
+        return repo.findAll();
+    }
+
     public PersonData updateById(PersonData personData) {
         return repo.save(personData);
     }

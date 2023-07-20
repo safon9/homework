@@ -9,6 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Filter {
 
-    private Long limit;
-    private Long offset;
+    private int limit;
+    private int offset;
 }
