@@ -5,13 +5,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PersonRepo extends JpaRepository<PersonData, Long> {
 
-    PersonData findByName(String name);
+    PersonData findByPhoneNumber(String number);
 
-    PersonData deleteByName(String name);
+    Optional<PersonData> findById(Long id);
 
-    @Query(nativeQuery = true, value = "select p from PersonData p order by p.id limit :#{#flt.getLimit()} offset :#{#flt.getOffset()}")
-    List<PersonData> findLimited(@Param("flt")Filter flt);
+    void deleteByPhoneNumber(String number);
+
+    void deleteById(Long id);
+
+//    @Query(nativeQuery = true, value = "select p from PersonData p order by p.id limit :#{#flt.getLimit()} offset :#{#flt.getOffset()}")
+//    List<PersonData> findLimited(@Param("flt")Filter flt);
 }
