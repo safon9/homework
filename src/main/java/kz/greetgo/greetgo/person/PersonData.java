@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "person_data", schema = "personData", catalog = "postgres")
+@Table(name = "person_data_dto", schema = "personData", catalog = "postgres")
 @Setter
 @Getter
 @NoArgsConstructor

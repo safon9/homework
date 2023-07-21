@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -16,6 +17,18 @@ public class Controller {
 
     public Controller(PersonService service) {
         this.service = service;
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<PersonData> add(@RequestBody PersonData personData) {
+
+        if (personData.getId() != null && personData.getId() != 0) {
+            return new ResponseEntity("redundant param id must not be null", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        personData.setBirthDate(new Date());
+
+        return ResponseEntity.ok(service.add(personData));
     }
 
 
@@ -96,8 +109,6 @@ public class Controller {
         return ResponseEntity.ok(list.subList(filter.getOffset() - 1,
                 filter.getLimit() >= list.size() ? (list.size() - 1) : (filter.getLimit() - 1)));
     }
-
-
 
 
 }
